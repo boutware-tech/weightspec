@@ -3,7 +3,7 @@ This is a system for managing and tracking factors that relate to an athlete's w
 
 ## Requirements
 1. **Identity data**  
-   The system will maintain the minimal amount of data to identify athletes and other users (_ex : id/username, first-name, last-name, date-of-birth_). Detailed identity-type data, as well as team and roster data, will be sourced from another system. Authentication and authorization (RBAC) will also be performed by this other system.  
+   The system will maintain the minimal amount of data to identify athletes and other users (_ex. id/username, first-name, last-name, date-of-birth_). Detailed identity-type data, as well as team and roster data, will be sourced from another system. Authentication and authorization (RBAC) will also be performed by this other system.  
 2. **Athlete body measurements**  
    The system will provide an interface to enter and maintain per-athlete records of data for weight management purposes. The structure of the data could be different for each athlete (due to different governing body rules). Therefore, this will need to be flexible and configurable. This dataset could include some of the following :
      1. Weight
@@ -16,5 +16,5 @@ This is a system for managing and tracking factors that relate to an athlete's w
    The system will provide an interface to challenge and/or appeal an athlete record that has been verified by an Auditor. The challenge/appeal process could be different due to different governing body rules. Therefore, this will need to be flexible and configurable. 
 5. **Competition weigh-in data**  
    In addition to athlete body measurements, the system will provide an interface to enter and maintain per-athlete records for competition weigh-in data. 
-6. **Roles**
+6. **Roles**  
    Certain aspects and operations of the system will only be available to authorized users. For example, auditing records must only be done by a designated Auditor, athlete body measurements should only be entered and editted by a Coach or Team Manager for that particular athlete. Therefore, the system must identify these roles and secure these operations.
