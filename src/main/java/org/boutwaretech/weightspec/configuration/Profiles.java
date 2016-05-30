@@ -12,8 +12,9 @@ package org.boutwaretech.weightspec.configuration;
  * </ul>
  */
 public class Profiles {
-    public static final String APPLICATION = "application";
+    public static final String LIVE = "live";
     public static final String INTEGRATION_TEST = "integrationtest";
+    public static final String DEV = "dev";
 
     /**
      * Prevent instantiation.

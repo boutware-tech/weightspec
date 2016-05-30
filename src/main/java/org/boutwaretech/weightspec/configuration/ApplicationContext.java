@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Import;
 @Import({ PersistenceContext.class })
 public class ApplicationContext {
 
-    // @Profile(Profiles.APPLICATION)
     @Bean
     DateTimeService currentTimeDateTimeService() {
         return new CurrentTimeDateTimeService();
