@@ -19,7 +19,13 @@ public class BodyMeasurement extends BaseEntity {
     private Integer version;
 
     private ZonedDateTime assessmentDate;
+    @Column(nullable = false)
     private Integer athleteId;
+    @Column(length = 50)
+    private String athleteFirstName;
+    @Column(length = 50)
+    private String athleteLastName;
+    private Integer teamId;
     private Double weight;
     @Column(length = 10)
     private String weightUnit;
@@ -49,6 +55,8 @@ public class BodyMeasurement extends BaseEntity {
     private Integer governingBodyId;
     @Column(length = 100)
     private String comments;
+    @Column(length = 10)
+    private String gender;
 
     public Integer getId() {
         return id;
@@ -80,6 +88,30 @@ public class BodyMeasurement extends BaseEntity {
 
     public void setAthleteId(Integer athleteId) {
         this.athleteId = athleteId;
+    }
+
+    public String getAthleteFirstName() {
+        return athleteFirstName;
+    }
+
+    public void setAthleteFirstName(String athleteFirstName) {
+        this.athleteFirstName = athleteFirstName;
+    }
+
+    public String getAthleteLastName() {
+        return athleteLastName;
+    }
+
+    public void setAthleteLastName(String athleteLastName) {
+        this.athleteLastName = athleteLastName;
+    }
+
+    public Integer getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Integer teamId) {
+        this.teamId = teamId;
     }
 
     public Double getWeight() {
@@ -232,5 +264,13 @@ public class BodyMeasurement extends BaseEntity {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

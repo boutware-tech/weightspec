@@ -25,6 +25,9 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
         BodyMeasurement bm1 = new BodyMeasurement();
         bm1.setAthleteId(123);
+        bm1.setAthleteFirstName("John");
+        bm1.setAthleteLastName("Smith");
+        bm1.setTeamId(987);
         bm1.setHeight(60.0);
         bm1.setHeightUnit(Constants.UNIT_INCH);
         bm1.setWeight(100.0);
@@ -40,6 +43,7 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         bm1.setSkinfoldSupraspinale("[1.4,1.5,1.6]");
         bm1.setTransactionId(555);
         bm1.setGoverningBodyId(135);
+        bm1.setGender(Constants.GENDER_MALE);
         bm1.setComments("NONE");
         bmRepository.save(bm1);
 
@@ -47,6 +51,9 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
 
         BodyMeasurement bm2 = new BodyMeasurement();
         bm2.setAthleteId(456);
+        bm2.setAthleteFirstName("Dan");
+        bm2.setAthleteLastName("Gable");
+        bm2.setTeamId(654);
         bm2.setHeight(70.0);
         bm2.setHeightUnit(Constants.UNIT_INCH);
         bm2.setWeight(150.0);
@@ -62,6 +69,7 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         bm2.setSkinfoldSupraspinale("[1.4,1.5,1.6]");
         bm2.setTransactionId(999);
         bm2.setGoverningBodyId(246);
+        bm2.setGender(Constants.GENDER_FEMALE);
         bm2.setComments("HELLO");
         bmRepository.save(bm2);
 
