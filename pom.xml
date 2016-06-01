@@ -66,6 +66,12 @@
       <artifactId>jquery</artifactId>
     </dependency>
 
+    <!-- DB Connection Pooling -->
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+    </dependency>
+
     <!-- Development database -->
     <dependency>
       <groupId>com.h2database</groupId>

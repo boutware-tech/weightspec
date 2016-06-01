@@ -1,15 +1,18 @@
 package org.boutwaretech.weightspec.bootstrap;
 
 import org.apache.log4j.Logger;
+import org.boutwaretech.weightspec.configuration.Profiles;
 import org.boutwaretech.weightspec.constants.Constants;
 import org.boutwaretech.weightspec.domain.BodyMeasurement;
 import org.boutwaretech.weightspec.repositories.BodyMeasurementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
+@Profile(Profiles.DEV)
 public class BodyMeasurementLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private BodyMeasurementRepository bmRepository;
