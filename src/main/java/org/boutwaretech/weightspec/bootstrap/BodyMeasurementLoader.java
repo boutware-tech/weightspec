@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.boutwaretech.weightspec.configuration.Profiles;
-import org.boutwaretech.weightspec.constants.Constants;
 import org.boutwaretech.weightspec.constants.Gender;
 import org.boutwaretech.weightspec.constants.HeightUnit;
 import org.boutwaretech.weightspec.constants.WeightUnit;
@@ -48,28 +47,11 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
-        BodyMeasurement bm1 = new BodyMeasurement();
-        bm1.setAthleteId(123);
-        bm1.setAthleteFirstName("John");
-        bm1.setAthleteLastName("Smith");
-        bm1.setTeamId(987);
-        bm1.setHeight(60.0);
-        bm1.setHeightUnit(HeightUnit.INCH);
-        bm1.setWeight(100.0);
-        bm1.setWeightUnit(WeightUnit.LBS);
-        bm1.setSpecificGravity(4.5);
-        bm1.setPassedHydration(true);
-        bm1.setBodyFatPercent(12.3);
-        bm1.setSkinfoldAbdominal("[1.1, 1.2, 1.3]");
-        bm1.setSkinfoldBicep("[2.1,2.2,2.3]");
-        bm1.setSkinfoldCalf("[1.1,2.2,3.3]");
-        bm1.setSkinfoldTricep("[2.1,2.2,2.3]");
-        bm1.setSkinfoldSubscapula("[1.1, 1.2, 1.3]");
-        bm1.setSkinfoldSupraspinale("[1.4,1.5,1.6]");
-        bm1.setGoverningBodyId(135);
-        bm1.setGender(Gender.MALE);
-        bm1.setComments("NONE");
-        bmRepository.save(bm1);
+        makeBodyMeasurement("Abe", "Abeson", 1001);
+        makeBodyMeasurement("Bob", "Bobson", 1002);
+        makeBodyMeasurement("Carl", "Carlson", 1003);
+        
+        BodyMeasurement bm1 = makeBodyMeasurement("John", "Smith", 123);
 
         BodyMeasurementTransaction bmt1 = new BodyMeasurementTransaction();
         List<BodyMeasurement> bmList1 = new ArrayList<>();
@@ -87,28 +69,7 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
 
         log.info("Saved measurement - id: " + bm1.getId());
 
-        BodyMeasurement bm2 = new BodyMeasurement();
-        bm2.setAthleteId(456);
-        bm2.setAthleteFirstName("Dan");
-        bm2.setAthleteLastName("Gable");
-        bm2.setTeamId(654);
-        bm2.setHeight(70.0);
-        bm2.setHeightUnit(HeightUnit.INCH);
-        bm2.setWeight(150.0);
-        bm2.setWeightUnit(WeightUnit.LBS);
-        bm2.setSpecificGravity(2.3);
-        bm2.setPassedHydration(false);
-        bm2.setBodyFatPercent(15.6);
-        bm2.setSkinfoldAbdominal("[1.1, 1.2, 1.3]");
-        bm2.setSkinfoldBicep("[2.1,2.2,2.3]");
-        bm2.setSkinfoldCalf("[1.1,2.2,3.3]");
-        bm2.setSkinfoldTricep("[2.1,2.2,2.3]");
-        bm2.setSkinfoldSubscapula("[1.1, 1.2, 1.3]");
-        bm2.setSkinfoldSupraspinale("[1.4,1.5,1.6]");
-        bm2.setGoverningBodyId(246);
-        bm2.setGender(Gender.FEMALE);
-        bm2.setComments("HELLO");
-        bmRepository.save(bm2);
+        BodyMeasurement bm2 = makeBodyMeasurement("Dan", "Gable", 112233);
 
         BodyMeasurementTransaction bmt2 = new BodyMeasurementTransaction();
         List<BodyMeasurement> bmList2 = new ArrayList<>();
@@ -126,5 +87,32 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         bmaRepository.save(bma2);
 
         log.info("Saved measurement - id: " + bm2.getId());
+    }
+    
+    private BodyMeasurement makeBodyMeasurement(String first, String last, Integer athleteId) {
+        BodyMeasurement bm = new BodyMeasurement();
+        bm.setAthleteId(athleteId);
+        bm.setAthleteFirstName(first);
+        bm.setAthleteLastName(last);
+        bm.setTeamId(654);
+        bm.setHeight(70.0);
+        bm.setHeightUnit(HeightUnit.INCH);
+        bm.setWeight(150.0);
+        bm.setWeightUnit(WeightUnit.LBS);
+        bm.setSpecificGravity(2.3);
+        bm.setPassedHydration(false);
+        bm.setBodyFatPercent(15.6);
+        bm.setSkinfoldAbdominal("[1.1, 1.2, 1.3]");
+        bm.setSkinfoldBicep("[2.1,2.2,2.3]");
+        bm.setSkinfoldCalf("[1.1,2.2,3.3]");
+        bm.setSkinfoldTricep("[2.1,2.2,2.3]");
+        bm.setSkinfoldSubscapula("[1.1, 1.2, 1.3]");
+        bm.setSkinfoldSupraspinale("[1.4,1.5,1.6]");
+        bm.setGoverningBodyId(246);
+        bm.setGender(Gender.MALE);
+        bm.setComments("HELLO");
+        bmRepository.save(bm);
+        
+        return bm;
     }
 }
