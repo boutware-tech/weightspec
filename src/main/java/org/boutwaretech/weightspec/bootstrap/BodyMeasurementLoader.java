@@ -7,6 +7,8 @@ import org.boutwaretech.weightspec.constants.Gender;
 import org.boutwaretech.weightspec.constants.HeightUnit;
 import org.boutwaretech.weightspec.constants.WeightUnit;
 import org.boutwaretech.weightspec.domain.BodyMeasurement;
+import org.boutwaretech.weightspec.domain.BodyMeasurementApproval;
+import org.boutwaretech.weightspec.repositories.BodyMeasurementApprovalRepository;
 import org.boutwaretech.weightspec.repositories.BodyMeasurementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -19,12 +21,18 @@ import org.springframework.stereotype.Component;
 public class BodyMeasurementLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private BodyMeasurementRepository bmRepository;
+    private BodyMeasurementApprovalRepository bmaRepository;
 
     private Logger log = Logger.getLogger(BodyMeasurementLoader.class);
 
     @Autowired
-    public void setWeightAssessmentRepository(BodyMeasurementRepository bmRepository) {
+    public void setBodyMeasurementRepository(BodyMeasurementRepository bmRepository) {
         this.bmRepository = bmRepository;
+    }
+
+    @Autowired
+    public void setBodyMeasurementApprovalRepository(BodyMeasurementApprovalRepository bmaRepository) {
+        this.bmaRepository = bmaRepository;
     }
 
     @Override
@@ -52,6 +60,10 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         bm1.setGender(Gender.MALE);
         bm1.setComments("NONE");
         bmRepository.save(bm1);
+        
+        BodyMeasurementApproval bma1 = new BodyMeasurementApproval();
+        bma1.setBodyMeasurement(bm1);
+        bmaRepository.save(bma1);
 
         log.info("Saved measurement - id: " + bm1.getId());
 
@@ -78,6 +90,10 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         bm2.setGender(Gender.FEMALE);
         bm2.setComments("HELLO");
         bmRepository.save(bm2);
+        
+        BodyMeasurementApproval bma2 = new BodyMeasurementApproval();
+        bma2.setBodyMeasurement(bm2);
+        bmaRepository.save(bma2);
 
         log.info("Saved measurement - id: " + bm2.getId());
     }
