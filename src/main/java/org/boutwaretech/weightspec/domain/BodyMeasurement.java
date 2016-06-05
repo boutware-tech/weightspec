@@ -4,10 +4,16 @@ import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Version;
+
+import org.boutwaretech.weightspec.constants.Gender;
+import org.boutwaretech.weightspec.constants.HeightUnit;
+import org.boutwaretech.weightspec.constants.WeightUnit;
 
 @Entity
 public class BodyMeasurement extends BaseEntity {
@@ -27,11 +33,11 @@ public class BodyMeasurement extends BaseEntity {
     private String athleteLastName;
     private Integer teamId;
     private Double weight;
-    @Column(length = 10)
-    private String weightUnit;
+    @Enumerated(EnumType.STRING)
+    private WeightUnit weightUnit;
     private Double height;
-    @Column(length = 10)
-    private String heightUnit;
+    @Enumerated(EnumType.STRING)
+    private HeightUnit heightUnit;
     private Double specificGravity;
     private Boolean passedHydration;
     private Double bodyFatPercent;
@@ -55,8 +61,8 @@ public class BodyMeasurement extends BaseEntity {
     private Integer governingBodyId;
     @Column(length = 100)
     private String comments;
-    @Column(length = 10)
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
 
     public Integer getId() {
         return id;
@@ -122,11 +128,11 @@ public class BodyMeasurement extends BaseEntity {
         this.weight = weight;
     }
 
-    public String getWeightUnit() {
+    public WeightUnit getWeightUnit() {
         return weightUnit;
     }
 
-    public void setWeightUnit(String weightUnit) {
+    public void setWeightUnit(WeightUnit weightUnit) {
         this.weightUnit = weightUnit;
     }
 
@@ -138,11 +144,11 @@ public class BodyMeasurement extends BaseEntity {
         this.height = height;
     }
 
-    public String getHeightUnit() {
+    public HeightUnit getHeightUnit() {
         return heightUnit;
     }
 
-    public void setHeightUnit(String heightUnit) {
+    public void setHeightUnit(HeightUnit heightUnit) {
         this.heightUnit = heightUnit;
     }
 
@@ -266,11 +272,11 @@ public class BodyMeasurement extends BaseEntity {
         this.comments = comments;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 }
