@@ -1,10 +1,15 @@
 package org.boutwaretech.weightspec.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import org.boutwaretech.weightspec.constants.ApprovalStatus;
 
 @Entity
 public class BodyMeasurementApproval extends BaseEntity {
@@ -15,7 +20,11 @@ public class BodyMeasurementApproval extends BaseEntity {
     @OneToOne
     private BodyMeasurement bodyMeasurement;
 
-    private Boolean approved = false;
+    @ManyToOne
+    private BodyMeasurementTransaction transaction;
+
+    @Enumerated(EnumType.STRING)
+    private ApprovalStatus status = ApprovalStatus.PENDING;
 
     public Integer getId() {
         return id;
@@ -33,11 +42,19 @@ public class BodyMeasurementApproval extends BaseEntity {
         this.bodyMeasurement = bodyMeasurement;
     }
 
-    public Boolean getApproved() {
-        return approved;
+    public ApprovalStatus getStatus() {
+        return status;
     }
 
-    public void setApproved(Boolean approved) {
-        this.approved = approved;
+    public void setStatus(ApprovalStatus status) {
+        this.status = status;
+    }
+
+    public BodyMeasurementTransaction getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(BodyMeasurementTransaction transaction) {
+        this.transaction = transaction;
     }
 }

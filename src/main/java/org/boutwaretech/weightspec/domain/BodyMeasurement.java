@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Version;
 
 import org.boutwaretech.weightspec.constants.Gender;
@@ -39,7 +40,7 @@ public class BodyMeasurement extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private HeightUnit heightUnit;
     private Double specificGravity;
-    private Boolean passedHydration;
+    private boolean passedHydration;
     private Double bodyFatPercent;
     @Column(length = 50)
     private String skinfoldAbdominal;
@@ -57,7 +58,8 @@ public class BodyMeasurement extends BaseEntity {
     private String skinfoldSupraspinale;
     private Integer assessorId;
     private Integer hydrationAssessor;
-    private Integer transactionId;
+    @ManyToOne
+    private BodyMeasurementTransaction transaction;
     private Integer governingBodyId;
     @Column(length = 100)
     private String comments;
@@ -160,11 +162,11 @@ public class BodyMeasurement extends BaseEntity {
         this.specificGravity = specificGravity;
     }
 
-    public Boolean getPassedHydration() {
+    public boolean isPassedHydration() {
         return passedHydration;
     }
 
-    public void setPassedHydration(Boolean passedHydration) {
+    public void setPassedHydration(boolean passedHydration) {
         this.passedHydration = passedHydration;
     }
 
@@ -256,12 +258,12 @@ public class BodyMeasurement extends BaseEntity {
         this.governingBodyId = governingBodyId;
     }
 
-    public Integer getTransactionId() {
-        return transactionId;
+    public BodyMeasurementTransaction getTransactionId() {
+        return transaction;
     }
 
-    public void setTransactionId(Integer transactionId) {
-        this.transactionId = transactionId;
+    public void setTransactionId(BodyMeasurementTransaction transaction) {
+        this.transaction = transaction;
     }
 
     public String getComments() {

@@ -1,5 +1,8 @@
 package org.boutwaretech.weightspec.bootstrap;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.boutwaretech.weightspec.configuration.Profiles;
 import org.boutwaretech.weightspec.constants.Constants;
@@ -8,8 +11,10 @@ import org.boutwaretech.weightspec.constants.HeightUnit;
 import org.boutwaretech.weightspec.constants.WeightUnit;
 import org.boutwaretech.weightspec.domain.BodyMeasurement;
 import org.boutwaretech.weightspec.domain.BodyMeasurementApproval;
+import org.boutwaretech.weightspec.domain.BodyMeasurementTransaction;
 import org.boutwaretech.weightspec.repositories.BodyMeasurementApprovalRepository;
 import org.boutwaretech.weightspec.repositories.BodyMeasurementRepository;
+import org.boutwaretech.weightspec.repositories.BodyMeasurementTransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Profile;
@@ -21,6 +26,7 @@ import org.springframework.stereotype.Component;
 public class BodyMeasurementLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private BodyMeasurementRepository bmRepository;
+    private BodyMeasurementTransactionRepository bmtRepository;
     private BodyMeasurementApprovalRepository bmaRepository;
 
     private Logger log = Logger.getLogger(BodyMeasurementLoader.class);
@@ -28,6 +34,11 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
     @Autowired
     public void setBodyMeasurementRepository(BodyMeasurementRepository bmRepository) {
         this.bmRepository = bmRepository;
+    }
+
+    @Autowired
+    public void setBodyMeasurementTransactionRepository(BodyMeasurementTransactionRepository bmtRepository) {
+        this.bmtRepository = bmtRepository;
     }
 
     @Autowired
@@ -55,14 +66,23 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         bm1.setSkinfoldTricep("[2.1,2.2,2.3]");
         bm1.setSkinfoldSubscapula("[1.1, 1.2, 1.3]");
         bm1.setSkinfoldSupraspinale("[1.4,1.5,1.6]");
-        bm1.setTransactionId(555);
         bm1.setGoverningBodyId(135);
         bm1.setGender(Gender.MALE);
         bm1.setComments("NONE");
         bmRepository.save(bm1);
+
+        BodyMeasurementTransaction bmt1 = new BodyMeasurementTransaction();
+        List<BodyMeasurement> bmList1 = new ArrayList<>();
+        bmList1.add(bm1);
+        bmt1.setMeasurements(bmList1);
+        bmtRepository.save(bmt1);
+        
+        bm1.setTransactionId(bmt1);
+        bmRepository.save(bm1);
         
         BodyMeasurementApproval bma1 = new BodyMeasurementApproval();
         bma1.setBodyMeasurement(bm1);
+        bma1.setTransaction(bmt1);
         bmaRepository.save(bma1);
 
         log.info("Saved measurement - id: " + bm1.getId());
@@ -85,14 +105,24 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         bm2.setSkinfoldTricep("[2.1,2.2,2.3]");
         bm2.setSkinfoldSubscapula("[1.1, 1.2, 1.3]");
         bm2.setSkinfoldSupraspinale("[1.4,1.5,1.6]");
-        bm2.setTransactionId(999);
         bm2.setGoverningBodyId(246);
         bm2.setGender(Gender.FEMALE);
         bm2.setComments("HELLO");
         bmRepository.save(bm2);
+
+        BodyMeasurementTransaction bmt2 = new BodyMeasurementTransaction();
+        List<BodyMeasurement> bmList2 = new ArrayList<>();
+        bmList2.add(bm2);
+        bmt2.setMeasurements(bmList2);
+        
+        bmtRepository.save(bmt2);
+        
+        bm2.setTransactionId(bmt2);
+        bmRepository.save(bm2);
         
         BodyMeasurementApproval bma2 = new BodyMeasurementApproval();
         bma2.setBodyMeasurement(bm2);
+        bma2.setTransaction(bmt2);
         bmaRepository.save(bma2);
 
         log.info("Saved measurement - id: " + bm2.getId());
