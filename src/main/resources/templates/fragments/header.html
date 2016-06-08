@@ -14,6 +14,14 @@
             <li><a href="#" th:href="@{/organizations}">Organizations</a></li>
             <li><a href="#" th:href="@{/teams}">Teams</a></li>
             <li><a href="#" th:href="@{/athletes}">Athletes</a></li>
+            
+          </ul>
+        </div>
+        <div class="navbar-header pull-right">
+          <ul class="nav navbar-nav">
+            <li sec:authorize="!isAuthenticated()"><a href="#" th:href="@{/login}">Login</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="#" th:href="@{/logout}">Logout</a></li>
+            <li th:if="${@environment.getActiveProfiles()[0] == 'dev'}"><a href="#" th:href="@{/console}">H2</a></li>
           </ul>
         </div>
       </div>
