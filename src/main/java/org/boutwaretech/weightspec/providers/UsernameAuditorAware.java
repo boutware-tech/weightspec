@@ -22,7 +22,7 @@ public class UsernameAuditorAware implements AuditorAware<String> {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated()) {
-            return (env.acceptsProfiles(Profiles.LIVE)) ? null : Constants.BOOTSTRAP;
+            return (env.acceptsProfiles(Profiles.PROD)) ? null : Constants.BOOTSTRAP;
         }
 
         return ((User) authentication.getPrincipal()).getUsername();

@@ -6,8 +6,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@Profile(Profiles.LIVE)
-public class SecurityConfigurationLive extends WebSecurityConfigurerAdapter {
+@Profile(Profiles.PROD)
+public class SecurityConfigurationProd extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
