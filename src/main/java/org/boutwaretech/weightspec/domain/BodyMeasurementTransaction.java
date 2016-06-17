@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 public class BodyMeasurementTransaction extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
     
     private boolean committed;
 
@@ -22,11 +22,11 @@ public class BodyMeasurementTransaction extends BaseEntity {
     @OneToMany(mappedBy = "transaction")
     private List<BodyMeasurementApproval> approvals;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

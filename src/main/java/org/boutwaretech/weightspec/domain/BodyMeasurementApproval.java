@@ -15,7 +15,7 @@ import org.boutwaretech.weightspec.constants.ApprovalStatus;
 public class BodyMeasurementApproval extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @OneToOne
     private BodyMeasurement bodyMeasurement;
@@ -26,11 +26,11 @@ public class BodyMeasurementApproval extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ApprovalStatus status = ApprovalStatus.PENDING;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
