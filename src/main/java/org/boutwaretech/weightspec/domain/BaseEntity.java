@@ -13,6 +13,8 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import lombok.Data;
+
 /**
  * Base entity class for domain entities.
  *
@@ -20,6 +22,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
+@Data
 public abstract class BaseEntity {
 
     @Column(nullable = false)
@@ -39,35 +42,4 @@ public abstract class BaseEntity {
     @LastModifiedBy
     private String modifiedByUser;
 
-    public ZonedDateTime getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(ZonedDateTime creationTime) {
-        this.creationTime = creationTime;
-    }
-
-    public String getCreatedByUser() {
-        return createdByUser;
-    }
-
-    public void setCreatedByUser(String createdByUser) {
-        this.createdByUser = createdByUser;
-    }
-
-    public ZonedDateTime getModificationTime() {
-        return modificationTime;
-    }
-
-    public void setModificationTime(ZonedDateTime modificationTime) {
-        this.modificationTime = modificationTime;
-    }
-
-    public String getModifiedByUser() {
-        return modifiedByUser;
-    }
-
-    public void setModifiedByUser(String modifiedByUser) {
-        this.modifiedByUser = modifiedByUser;
-    }
 }

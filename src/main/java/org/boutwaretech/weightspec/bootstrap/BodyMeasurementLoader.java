@@ -59,7 +59,7 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         bmt1.setMeasurements(bmList1);
         bmtRepository.save(bmt1);
         
-        bm1.setTransactionId(bmt1);
+        bm1.setTransaction(bmt1);
         bmRepository.save(bm1);
         
         BodyMeasurementApproval bma1 = new BodyMeasurementApproval();
@@ -78,7 +78,7 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         
         bmtRepository.save(bmt2);
         
-        bm2.setTransactionId(bmt2);
+        bm2.setTransaction(bmt2);
         bmRepository.save(bm2);
         
         BodyMeasurementApproval bma2 = new BodyMeasurementApproval();

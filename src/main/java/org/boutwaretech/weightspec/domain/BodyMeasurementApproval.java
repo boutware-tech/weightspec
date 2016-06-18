@@ -11,7 +11,12 @@ import javax.persistence.OneToOne;
 
 import org.boutwaretech.weightspec.constants.ApprovalStatus;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
+@Data
+@EqualsAndHashCode(callSuper=false)
 public class BodyMeasurementApproval extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,35 +31,4 @@ public class BodyMeasurementApproval extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ApprovalStatus status = ApprovalStatus.PENDING;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public BodyMeasurement getBodyMeasurement() {
-        return bodyMeasurement;
-    }
-
-    public void setBodyMeasurement(BodyMeasurement bodyMeasurement) {
-        this.bodyMeasurement = bodyMeasurement;
-    }
-
-    public ApprovalStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(ApprovalStatus status) {
-        this.status = status;
-    }
-
-    public BodyMeasurementTransaction getTransaction() {
-        return transaction;
-    }
-
-    public void setTransaction(BodyMeasurementTransaction transaction) {
-        this.transaction = transaction;
-    }
 }

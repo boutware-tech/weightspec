@@ -8,7 +8,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
+@Data
+@EqualsAndHashCode(callSuper=false)
 public class BodyMeasurementTransaction extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,35 +27,4 @@ public class BodyMeasurementTransaction extends BaseEntity {
     @OneToMany(mappedBy = "transaction")
     private List<BodyMeasurementApproval> approvals;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<BodyMeasurement> getMeasurements() {
-        return measurements;
-    }
-
-    public void setMeasurements(List<BodyMeasurement> measurements) {
-        this.measurements = measurements;
-    }
-
-    public List<BodyMeasurementApproval> getApprovals() {
-        return approvals;
-    }
-
-    public void setApprovals(List<BodyMeasurementApproval> approvals) {
-        this.approvals = approvals;
-    }
-    
-    public boolean isCommitted() {
-        return committed;
-    }
-
-    public void setCommitted(boolean committed) {
-        this.committed = committed;
-    }
 }
