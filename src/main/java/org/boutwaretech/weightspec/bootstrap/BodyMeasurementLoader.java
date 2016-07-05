@@ -47,9 +47,9 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
-        makeBodyMeasurement("Abe", "Abeson", 1001);
-        makeBodyMeasurement("Bob", "Bobson", 1002);
-        makeBodyMeasurement("Carl", "Carlson", 1003);
+        makeBodyMeasurement("Alan", "Alanson", 111);
+        makeBodyMeasurement("Bob", "Bobson", 112);
+        makeBodyMeasurement("Carl", "Carlson", 113);
         
         BodyMeasurement bm1 = makeBodyMeasurement("John", "Smith", 123);
 
@@ -57,6 +57,7 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         List<BodyMeasurement> bmList1 = new ArrayList<>();
         bmList1.add(bm1);
         bmt1.setMeasurements(bmList1);
+        bmt1.setTeamId(1111L);
         bmtRepository.save(bmt1);
         
         bm1.setTransaction(bmt1);
@@ -75,6 +76,7 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         List<BodyMeasurement> bmList2 = new ArrayList<>();
         bmList2.add(bm2);
         bmt2.setMeasurements(bmList2);
+        bmt2.setTeamId(1111L);
         
         bmtRepository.save(bmt2);
         

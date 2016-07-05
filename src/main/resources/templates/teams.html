@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+<title>WS:Teams</title>
+
+<!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+  <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+  <div class="container col-md-10 col-md-offset-1">
+    <div class="row">
+        <div class="input-group col-md-6">
+          <input type="text" class="form-control input-md" placeholder="Search Teams" />
+          <span class="input-group-btn">
+           <button class="btn btn-default btn-md" type="button">
+             <i class="glyphicon glyphicon-search"></i>
+           </button>
+         </span>
+       </div>
+    </div>
+    <div id="teams-table" class="row">
+      <table class="table table-striped table-bordered">
+        <tr>
+          <th>Team Name</th>
+          <th>City</th>
+          <th>State</th>
+        </tr>
+        <tr th:each="team : ${teams}">
+          <td><a href="/teams/1" th:href="@{/teams/{tid}(tid=${team.id})}" th:text="${team.name}">Southwest High School</a></td>
+          <td th:text="${team.city}">Austin</td>
+          <td th:text="${team.state}">TX</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

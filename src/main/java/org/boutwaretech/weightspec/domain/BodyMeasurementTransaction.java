@@ -2,6 +2,7 @@ package org.boutwaretech.weightspec.domain;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,5 +27,8 @@ public class BodyMeasurementTransaction extends BaseEntity {
     
     @OneToMany(mappedBy = "transaction")
     private List<BodyMeasurementApproval> approvals;
+    
+    @Column(nullable=false)
+    private Long teamId;
 
 }
