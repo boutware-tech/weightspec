@@ -4,22 +4,22 @@ import lombok.Data;
 
 @Data
 public class Team {
-    private Long id;
+    private String id;
     private String name;
     private String city;
     private String state;
-    private Long orgId;
+    private String orgId;
     
     public Team() {
         this(null, null, null, null, null);
     }
     
-    public Team(Long id, String name, String city, String state, Long orgId) {
+    public Team(String id, String name, String city, String state, String orgId) {
         if (id == null) {
-            id = (long)(Math.random() * 999999 + 1);
+            id = ((Double)(Math.random() * 999999 + 1)).toString();
         }
         if (orgId == null) {
-            orgId = (long)(Math.random() * 999999 + 1);
+            orgId = ((Double)(Math.random() * 999999 + 1)).toString();
         }
         this.id = id;
         this.name = name;

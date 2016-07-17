@@ -47,17 +47,17 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
-        makeBodyMeasurement("Alan", "Alanson", 111);
-        makeBodyMeasurement("Bob", "Bobson", 112);
-        makeBodyMeasurement("Carl", "Carlson", 113);
+        makeBodyMeasurement("Alan", "Alanson", "111");
+        makeBodyMeasurement("Bob", "Bobson", "112");
+        makeBodyMeasurement("Carl", "Carlson", "113");
         
-        BodyMeasurement bm1 = makeBodyMeasurement("John", "Smith", 123);
+        BodyMeasurement bm1 = makeBodyMeasurement("John", "Smith", "123");
 
         BodyMeasurementTransaction bmt1 = new BodyMeasurementTransaction();
         List<BodyMeasurement> bmList1 = new ArrayList<>();
         bmList1.add(bm1);
         bmt1.setMeasurements(bmList1);
-        bmt1.setTeamId(1111L);
+        bmt1.setTeamId("1111");
         bmtRepository.save(bmt1);
         
         bm1.setTransaction(bmt1);
@@ -70,13 +70,13 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
 
         log.info("Saved measurement - id: " + bm1.getId());
 
-        BodyMeasurement bm2 = makeBodyMeasurement("Dan", "Gable", 112233);
+        BodyMeasurement bm2 = makeBodyMeasurement("Dan", "Gable", "112233");
 
         BodyMeasurementTransaction bmt2 = new BodyMeasurementTransaction();
         List<BodyMeasurement> bmList2 = new ArrayList<>();
         bmList2.add(bm2);
         bmt2.setMeasurements(bmList2);
-        bmt2.setTeamId(1111L);
+        bmt2.setTeamId("1111");
         
         bmtRepository.save(bmt2);
         
@@ -91,12 +91,12 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         log.info("Saved measurement - id: " + bm2.getId());
     }
     
-    private BodyMeasurement makeBodyMeasurement(String first, String last, Integer athleteId) {
+    private BodyMeasurement makeBodyMeasurement(String first, String last, String athleteId) {
         BodyMeasurement bm = new BodyMeasurement();
         bm.setAthleteId(athleteId);
         bm.setAthleteFirstName(first);
         bm.setAthleteLastName(last);
-        bm.setTeamId(654);
+        bm.setTeamId("654");
         bm.setHeight(70.0);
         bm.setHeightUnit(HeightUnit.INCH);
         bm.setWeight(150.0);
@@ -110,7 +110,7 @@ public class BodyMeasurementLoader implements ApplicationListener<ContextRefresh
         bm.setSkinfoldTricep("[2.1,2.2,2.3]");
         bm.setSkinfoldSubscapula("[1.1, 1.2, 1.3]");
         bm.setSkinfoldSupraspinale("[1.4,1.5,1.6]");
-        bm.setGoverningBodyId(246);
+        bm.setGoverningBodyId("246");
         bm.setGender(Gender.MALE);
         bm.setComments("HELLO");
         bmRepository.save(bm);

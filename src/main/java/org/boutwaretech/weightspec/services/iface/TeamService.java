@@ -1,6 +1,6 @@
 package org.boutwaretech.weightspec.services.iface;
 
-import org.boutwaretech.weightspec.domain.Athlete;
+import org.boutwaretech.weightspec.domain.Person;
 import org.boutwaretech.weightspec.domain.BodyMeasurementTransaction;
 import org.boutwaretech.weightspec.domain.Team;
 
@@ -8,9 +8,9 @@ public interface TeamService {
     
     Iterable<Team> listAllTeams();
     
-    Team getTeam(Long teamId);
+    Team getTeam(String teamId);
     
-    Iterable<Athlete> getAthletesByTeam(Long teamId);
+    Iterable<Person> getAthletesByTeam(String teamId);
     
-    Iterable<BodyMeasurementTransaction> getTransactionsByTeam(Long teamId);
+    Iterable<BodyMeasurementTransaction> getTransactionsByTeam(String teamId);
 }

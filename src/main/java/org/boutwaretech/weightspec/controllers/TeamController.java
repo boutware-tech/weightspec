@@ -26,7 +26,7 @@ public class TeamController {
     }
     
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
-    public String team(Model model, @PathVariable("id") Long teamId) {
+    public String team(Model model, @PathVariable("id") String teamId) {
         model.addAttribute("team", teamService.getTeam(teamId));
         model.addAttribute("athletes", teamService.getAthletesByTeam(teamId));
         model.addAttribute("transactions", teamService.getTransactionsByTeam(teamId));

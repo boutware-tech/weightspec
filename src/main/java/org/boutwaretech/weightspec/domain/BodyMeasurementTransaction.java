@@ -29,6 +29,6 @@ public class BodyMeasurementTransaction extends BaseEntity {
     private List<BodyMeasurementApproval> approvals;
     
     @Column(nullable=false)
-    private Long teamId;
+    private String teamId;
 
 }

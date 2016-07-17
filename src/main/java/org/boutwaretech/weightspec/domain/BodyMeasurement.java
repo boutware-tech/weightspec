@@ -32,12 +32,12 @@ public class BodyMeasurement extends BaseEntity {
 
     private ZonedDateTime assessmentDate;
     @Column(nullable = false)
-    private Integer athleteId;
+    private String athleteId;
     @Column(length = 50)
     private String athleteFirstName;
     @Column(length = 50)
     private String athleteLastName;
-    private Integer teamId;
+    private String teamId;
     private Double weight;
     @Enumerated(EnumType.STRING)
     private WeightUnit weightUnit;
@@ -61,11 +61,11 @@ public class BodyMeasurement extends BaseEntity {
     private String skinfoldTricep;
     @Column(length = 50)
     private String skinfoldSupraspinale;
-    private Integer assessorId;
+    private String assessorId;
     private Integer hydrationAssessor;
     @ManyToOne
     private BodyMeasurementTransaction transaction;
-    private Integer governingBodyId;
+    private String governingBodyId;
     @Column(length = 100)
     private String comments;
     @Enumerated(EnumType.STRING)
