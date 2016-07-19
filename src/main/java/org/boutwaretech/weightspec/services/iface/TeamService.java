@@ -4,9 +4,9 @@ import org.boutwaretech.weightspec.domain.Person;
 import org.boutwaretech.weightspec.domain.BodyMeasurementTransaction;
 import org.boutwaretech.weightspec.domain.Team;
 
-public interface TeamService {
+public interface TeamService<T extends Team> {
     
-    Iterable<Team> listAllTeams();
+    Iterable<T> listAllTeams();
     
     Team getTeam(String teamId);
     

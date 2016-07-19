@@ -9,6 +9,7 @@ public class Profiles {
     public static final String INTEGRATION_TEST = "integrationtest";
     public static final String DEV = "dev";
     public static final String FAKE_TEAMSVC = "faketeamsvc";
+    public static final String FLOID_TEAMSVC = "floteamsvc";
     
     /** Features */
     public static final String BASIC_AUTH = "basicauth";
