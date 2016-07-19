@@ -9,23 +9,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper=true, includeFieldNames=true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FloIdTeam extends Team {
 
     private String selfLink;
 
-    //@JsonProperty("data")
-    //public void setId(Map<String, Object> data) {
-    //    this.setId((String) data.get("id"));
-    //}
-
     @JsonProperty("attributes")
-    //@SuppressWarnings("unchecked")
     public void setName(Map<String, Object> attributes) {
-        //Map<String, Object> attributes = (Map<String, Object>) data.get("attributes");
         if (attributes != null) {
             this.setName((String) attributes.get("name"));
         }
