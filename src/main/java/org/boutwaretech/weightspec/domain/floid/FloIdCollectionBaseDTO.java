@@ -13,5 +13,5 @@ public class FloIdCollectionBaseDTO<T extends Object> {
     private Map<String, Object> links;
     private Iterable<T> data;
     private Map<String, Object> meta;
-    private Map<String, Object> jsonpi;
+    private Map<String, Object> jsonapi;
 }

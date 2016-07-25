@@ -4,6 +4,10 @@ body { padding-top: 70px; }
   margin-top:15px;
 }
 
+#orgs-table {
+  margin-top:15px;
+}
+
 .vcenter {
     display: inline-block;
     vertical-align: middle;
