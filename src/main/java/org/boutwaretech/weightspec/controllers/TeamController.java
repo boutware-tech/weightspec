@@ -1,5 +1,6 @@
 package org.boutwaretech.weightspec.controllers;
 
+import org.boutwaretech.weightspec.domain.Team;
 import org.boutwaretech.weightspec.services.iface.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/teams")
 public class TeamController {
 
-    private TeamService teamService;
+    private TeamService<? extends Team> teamService;
 
     @Autowired
-    public void setTeamService(TeamService teamService) {
+    public void setTeamService(TeamService<? extends Team> teamService) {
         this.teamService = teamService;
     }
     

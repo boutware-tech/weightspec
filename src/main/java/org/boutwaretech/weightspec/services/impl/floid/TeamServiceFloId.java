@@ -3,7 +3,6 @@ package org.boutwaretech.weightspec.services.impl.floid;
 import org.boutwaretech.weightspec.configuration.Profiles;
 import org.boutwaretech.weightspec.domain.BodyMeasurementTransaction;
 import org.boutwaretech.weightspec.domain.Person;
-import org.boutwaretech.weightspec.domain.Team;
 import org.boutwaretech.weightspec.domain.floid.FloIdCollectionBaseDTO;
 import org.boutwaretech.weightspec.domain.floid.FloIdTeam;
 import org.boutwaretech.weightspec.services.iface.TeamService;
@@ -31,7 +30,7 @@ public class TeamServiceFloId implements TeamService<FloIdTeam> {
     }
 
     @Override
-    public Team getTeam(String teamId) {
+    public FloIdTeam getTeam(String teamId) {
         // TODO Auto-generated method stub
         return null;
     }

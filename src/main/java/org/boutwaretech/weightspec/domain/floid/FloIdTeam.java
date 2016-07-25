@@ -17,17 +17,15 @@ import lombok.ToString;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FloIdTeam extends Team {
 
-    private String selfLink;
+    private Map<String, String> attributes;
+    private Map<String, String> links;
 
-    @JsonProperty("attributes")
-    public void setName(Map<String, Object> attributes) {
-        if (attributes != null) {
-            this.setName((String) attributes.get("name"));
+    public void setAttributes(Map<String, String> attributes) {
+        if (attributes != null && !attributes.isEmpty()) {
+            this.attributes = attributes;
+            this.setName(attributes.get("name"));
+            this.setCity(attributes.get("city"));
+            this.setState(attributes.get("state"));
         }
-    }
-
-    @JsonProperty("links")
-    public void setSelfLink(Map<String, Object> links) {
-        selfLink = (String) links.get("self");
     }
 }

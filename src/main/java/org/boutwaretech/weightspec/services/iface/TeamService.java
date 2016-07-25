@@ -8,7 +8,7 @@ public interface TeamService<T extends Team> {
     
     Iterable<T> listAllTeams();
     
-    Team getTeam(String teamId);
+    T getTeam(String teamId);
     
     Iterable<Person> getAthletesByTeam(String teamId);
     
