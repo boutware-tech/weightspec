@@ -11,6 +11,7 @@ public class Profiles {
     public static final String FAKE_TEAMSVC = "faketeamsvc";
     public static final String FLOID_TEAMSVC = "floteamsvc";
     public static final String FLOID_ORGSVC = "floorgsvc";
+    public static final String FLOID_PERSONSVC = "flopersonsvc";
     
     /** Features */
     public static final String BASIC_AUTH = "basicauth";
