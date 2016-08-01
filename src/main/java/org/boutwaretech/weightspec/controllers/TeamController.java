@@ -1,5 +1,6 @@
 package org.boutwaretech.weightspec.controllers;
 
+import org.boutwaretech.weightspec.domain.Person;
 import org.boutwaretech.weightspec.domain.Team;
 import org.boutwaretech.weightspec.services.iface.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/teams")
 public class TeamController {
 
-    private TeamService<? extends Team> teamService;
+    private TeamService<? extends Team<? extends Person>> teamService;
 
     @Autowired
-    public void setTeamService(TeamService<? extends Team> teamService) {
+    public void setTeamService(TeamService<? extends Team<? extends Person>> teamService) {
         this.teamService = teamService;
     }
     
@@ -28,9 +29,7 @@ public class TeamController {
     
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public String team(Model model, @PathVariable("id") String teamId) {
-        model.addAttribute("team", teamService.getTeam(teamId));
-        model.addAttribute("athletes", teamService.getAthletesByTeam(teamId));
-        model.addAttribute("transactions", teamService.getTransactionsByTeam(teamId));
+        model.addAttribute("team", teamService.getTeamWithAthletes(teamId));
         return "team";
     }
 }

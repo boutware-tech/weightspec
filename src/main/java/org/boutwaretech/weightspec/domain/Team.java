@@ -3,12 +3,13 @@ package org.boutwaretech.weightspec.domain;
 import lombok.Data;
 
 @Data
-public class Team {
+public class Team<P extends Person> {
     private String id;
     private String name;
     private String city;
     private String state;
     private String orgId;
+    private Iterable<P> athletes;
     
     public Team() {
         this(null, null, null, null, null);

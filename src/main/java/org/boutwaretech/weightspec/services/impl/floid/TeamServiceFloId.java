@@ -2,8 +2,9 @@ package org.boutwaretech.weightspec.services.impl.floid;
 
 import org.boutwaretech.weightspec.configuration.Profiles;
 import org.boutwaretech.weightspec.domain.BodyMeasurementTransaction;
-import org.boutwaretech.weightspec.domain.Person;
+import org.boutwaretech.weightspec.domain.floid.FloIdBaseDTO;
 import org.boutwaretech.weightspec.domain.floid.FloIdCollectionBaseDTO;
+import org.boutwaretech.weightspec.domain.floid.FloIdPerson;
 import org.boutwaretech.weightspec.domain.floid.FloIdTeam;
 import org.boutwaretech.weightspec.services.iface.TeamService;
 import org.springframework.context.annotation.Profile;
@@ -36,9 +37,17 @@ public class TeamServiceFloId implements TeamService<FloIdTeam> {
     }
 
     @Override
-    public Iterable<Person> getAthletesByTeam(String teamId) {
-        // TODO Auto-generated method stub
-        return null;
+    public FloIdTeam getTeamWithAthletes(String teamId) {
+        String url = "https://blu8mpte03.execute-api.us-west-2.amazonaws.com/v1/teams/" + teamId + "?include=athletes";
+        ParameterizedTypeReference<FloIdBaseDTO<FloIdTeam, FloIdPerson>> typeRef =
+                new ParameterizedTypeReference<FloIdBaseDTO<FloIdTeam, FloIdPerson>>() {};
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<FloIdBaseDTO<FloIdTeam, FloIdPerson>> response =
+                restTemplate.exchange(url, HttpMethod.GET, null, typeRef);
+        FloIdBaseDTO<FloIdTeam, FloIdPerson> baseDTO = response.getBody();
+        FloIdTeam team = baseDTO.getData();
+        team.setAthletes(baseDTO.getIncluded());
+        return team;
     }
 
     @Override

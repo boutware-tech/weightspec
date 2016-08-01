@@ -33,7 +33,7 @@
           <th>DOB</th>
           <th>Gender</th>
         </tr>
-        <tr th:each="athlete : ${athletes}">
+        <tr th:each="athlete : ${team.athletes}">
           <td><a href="/athletes/1" th:href="@{/athletes/{aid}(aid=${athlete.id})}" th:text="${athlete.lastName} + ', ' + ${athlete.firstName}">Gable, Dan</a></td>
           <td th:text="${athlete.dateOfBirth}">2000/01/31</td>
           <td th:text="${athlete.gender}">M</td>

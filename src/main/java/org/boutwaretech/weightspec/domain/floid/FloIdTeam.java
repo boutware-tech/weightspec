@@ -5,7 +5,6 @@ import java.util.Map;
 import org.boutwaretech.weightspec.domain.Team;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,7 +14,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper=true, includeFieldNames=true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FloIdTeam extends Team {
+public class FloIdTeam extends Team<FloIdPerson> {
 
     private Map<String, String> attributes;
     private Map<String, String> links;
