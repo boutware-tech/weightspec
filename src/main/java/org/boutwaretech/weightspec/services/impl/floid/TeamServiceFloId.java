@@ -1,14 +1,18 @@
 package org.boutwaretech.weightspec.services.impl.floid;
 
 import org.boutwaretech.weightspec.configuration.Profiles;
+import org.boutwaretech.weightspec.constants.Constants;
 import org.boutwaretech.weightspec.domain.BodyMeasurementTransaction;
 import org.boutwaretech.weightspec.domain.floid.FloIdBaseDTO;
 import org.boutwaretech.weightspec.domain.floid.FloIdCollectionBaseDTO;
 import org.boutwaretech.weightspec.domain.floid.FloIdPerson;
 import org.boutwaretech.weightspec.domain.floid.FloIdTeam;
 import org.boutwaretech.weightspec.services.iface.TeamService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,11 +20,15 @@ import org.springframework.web.client.RestTemplate;
 
 @Profile(Profiles.FLOID_TEAMSVC)
 @Service
+@PropertySource("classpath:floid.properties")
 public class TeamServiceFloId implements TeamService<FloIdTeam> {
+
+    @Autowired
+    private Environment env;
 
     @Override
     public Iterable<FloIdTeam> listAllTeams() {
-        String url = "https://blu8mpte03.execute-api.us-west-2.amazonaws.com/v1/teams";
+        String url = env.getProperty(Constants.FLOID_BASEPATH_PROPERTY) + "teams";
         ParameterizedTypeReference<FloIdCollectionBaseDTO<FloIdTeam>> typeRef = 
                 new ParameterizedTypeReference<FloIdCollectionBaseDTO<FloIdTeam>>() {};
         RestTemplate restTemplate = new RestTemplate();
@@ -38,7 +46,7 @@ public class TeamServiceFloId implements TeamService<FloIdTeam> {
 
     @Override
     public FloIdTeam getTeamWithAthletes(String teamId) {
-        String url = "https://blu8mpte03.execute-api.us-west-2.amazonaws.com/v1/teams/" + teamId + "?include=athletes";
+        String url = env.getProperty(Constants.FLOID_BASEPATH_PROPERTY) + "teams/" + teamId + "?include=athletes";
         ParameterizedTypeReference<FloIdBaseDTO<FloIdTeam, FloIdPerson>> typeRef =
                 new ParameterizedTypeReference<FloIdBaseDTO<FloIdTeam, FloIdPerson>>() {};
         RestTemplate restTemplate = new RestTemplate();
