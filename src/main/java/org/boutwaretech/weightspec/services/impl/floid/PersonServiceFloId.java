@@ -1,5 +1,7 @@
 package org.boutwaretech.weightspec.services.impl.floid;
 
+import javax.annotation.PostConstruct;
+
 import org.boutwaretech.weightspec.configuration.Profiles;
 import org.boutwaretech.weightspec.constants.Constants;
 import org.boutwaretech.weightspec.domain.floid.FloIdCollectionBaseDTO;
@@ -15,17 +17,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Profile(Profiles.FLOID_PERSONSVC)
+@Profile({Profiles.FLOID_PERSONSVC, Profiles.FLOID_SVCS})
 @Service
 @PropertySource("classpath:floid.properties")
 public class PersonServiceFloId implements PersonService<FloIdPerson> {
 
+    private String floidBasepath;
+    
     @Autowired
     private Environment env;
+    
+    @PostConstruct
+    public void setFloidBasepath() {
+        this.floidBasepath = env.getProperty(Constants.FLOID_BASEPATH_PROPERTY);
+    }
 
     @Override
     public Iterable<FloIdPerson> listAllPersons() {
-        String url = env.getProperty(Constants.FLOID_BASEPATH_PROPERTY) + "people";
+        String url = this.floidBasepath + "people";
         ParameterizedTypeReference<FloIdCollectionBaseDTO<FloIdPerson>> typeRef = 
                 new ParameterizedTypeReference<FloIdCollectionBaseDTO<FloIdPerson>>() {};
         RestTemplate restTemplate = new RestTemplate();

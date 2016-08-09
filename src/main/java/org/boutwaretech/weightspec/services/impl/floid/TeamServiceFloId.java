@@ -1,5 +1,7 @@
 package org.boutwaretech.weightspec.services.impl.floid;
 
+import javax.annotation.PostConstruct;
+
 import org.boutwaretech.weightspec.configuration.Profiles;
 import org.boutwaretech.weightspec.constants.Constants;
 import org.boutwaretech.weightspec.domain.BodyMeasurementTransaction;
@@ -18,17 +20,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Profile(Profiles.FLOID_TEAMSVC)
+@Profile({Profiles.FLOID_TEAMSVC, Profiles.FLOID_SVCS})
 @Service
 @PropertySource("classpath:floid.properties")
 public class TeamServiceFloId implements TeamService<FloIdTeam> {
 
+    private String floidBasepath;
+    
     @Autowired
     private Environment env;
+    
+    @PostConstruct
+    public void setFloidBasepath() {
+        this.floidBasepath = env.getProperty(Constants.FLOID_BASEPATH_PROPERTY);
+    }
 
     @Override
     public Iterable<FloIdTeam> listAllTeams() {
-        String url = env.getProperty(Constants.FLOID_BASEPATH_PROPERTY) + "teams";
+        String url = this.floidBasepath + "teams";
         ParameterizedTypeReference<FloIdCollectionBaseDTO<FloIdTeam>> typeRef = 
                 new ParameterizedTypeReference<FloIdCollectionBaseDTO<FloIdTeam>>() {};
         RestTemplate restTemplate = new RestTemplate();
@@ -46,7 +55,7 @@ public class TeamServiceFloId implements TeamService<FloIdTeam> {
 
     @Override
     public FloIdTeam getTeamWithAthletes(String teamId) {
-        String url = env.getProperty(Constants.FLOID_BASEPATH_PROPERTY) + "teams/" + teamId + "?include=athletes";
+        String url = this.floidBasepath + "teams/" + teamId + "?include=athletes";
         ParameterizedTypeReference<FloIdBaseDTO<FloIdTeam, FloIdPerson>> typeRef =
                 new ParameterizedTypeReference<FloIdBaseDTO<FloIdTeam, FloIdPerson>>() {};
         RestTemplate restTemplate = new RestTemplate();
