@@ -16,8 +16,8 @@ import org.boutwaretech.weightspec.constants.Gender;
 import org.boutwaretech.weightspec.constants.HeightUnit;
 import org.boutwaretech.weightspec.constants.WeightUnit;
 
-import groovy.transform.EqualsAndHashCode;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
