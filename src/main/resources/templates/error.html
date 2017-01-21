@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+<title>WeightSpec</title>
+
+<!--/*/ <th:block th:include="fragments/head :: head"></th:block> /*/-->
+</head>
+<body>
+
+	<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+	<div class="container">
+		<div class="col-md-10 col-md-offset-1 row">
+			<div class="jumbotron">
+				<h2>Oops...an unexpected error occurred.</h2>
+
+				<p th:if="${error}">
+					<strong>Error:</strong> <span th:text="${error}">error</span>
+					<span th:if="${message}" th:text="'('+${message}+')'">message ...</span>
+				</p>
+
+				<!--  As we are using Thymeleaf, you might consider using
+						${#httpServletRequest.requestURL}. But that returns the path
+	      				to this error page.  Hence we explicitly add the url to the
+	      				Model in some of the example code. -->
+				<p th:if="path">
+					<strong>Page:</strong> <span th:text="${path}">Page URL</span>
+				</p>
+
+				<p th:if="${timestamp}" id='created'>
+					<strong>Occurred:</strong> <span th:text="${timestamp}">Timestamp</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
